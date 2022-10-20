@@ -2,31 +2,20 @@ syntax = "proto3";
 
 package ToolboxPlaneMessages;
 
-message BnoState {
-  bool todo = 1; // TODO
-}
-
-message BnoError {
-  bool todo = 1; //TODO
-}
-
-message BnoCalibStat {
-  bool todo = 1; //TODO
-}
-
 message FlightController {
-  BnoState bnoState = 1;
-  int32 roll = 2;
-  int32 pitch = 3;
-  int32 yaw = 4;
-  int32 dRoll = 5;
-  int32 dPitch = 6;
-  int32 dYaw = 7;
-  int32 accX = 8;
-  int32 accY = 9;
-  int32 accZ = 10;
-  BnoError bnoError = 11;
-  BnoCalibStat bnoCalibStat = 12;
-  int32 servoLeft = 13;
-  int32 servoRight = 14;
+  uint32 bnoState = 1;
+  uint32 roll = 2;
+  uint32 pitch = 3;
+  uint32 yaw = 4;
+  uint32 dRoll = 5;
+  uint32 dPitch = 6;
+  uint32 dYaw = 7;
+  uint32 accX = 8;
+  uint32 accY = 9;
+  uint32 accZ = 10;
+  uint32 bnoError = 11;
+  uint32 bnoCalibStat = 12;
+  uint32 motor = 13;
+  uint32 servoLeft = 14;
+  uint32 servoRight = 15;
 }

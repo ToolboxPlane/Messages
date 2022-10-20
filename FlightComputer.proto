@@ -1,6 +1,11 @@
 syntax = "proto3";
 
 package ToolboxPlaneMessages;
+import "FlightController.proto";
+import "LoRa.proto";
+import "Taranis.proto";
+import "PDB.proto";
+import "Nav.proto";
 
 message FlightComputer {
   FlightController flightController = 1;
