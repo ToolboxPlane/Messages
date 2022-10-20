@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ToolboxPlaneMessages;
+
+message FlightComputer {
+  FlightController flightController = 1;
+  LoRa lora = 2;
+  Taranis tarnis = 3;
+  PDB pdb = 4;
+  Nav nav = 5;
+}

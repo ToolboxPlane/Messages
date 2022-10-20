@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package ToolboxPlaneMessages;
+
+message BnoState {
+  bool todo = 1; // TODO
+}
+
+message BnoError {
+  bool todo = 1; //TODO
+}
+
+message BnoCalibStat {
+  bool todo = 1; //TODO
+}
+
+message FlightController {
+  BnoState bnoState = 1;
+  int32 roll = 2;
+  int32 pitch = 3;
+  int32 yaw = 4;
+  int32 dRoll = 5;
+  int32 dPitch = 6;
+  int32 dYaw = 7;
+  int32 accX = 8;
+  int32 accY = 9;
+  int32 accZ = 10;
+  BnoError bnoError = 11;
+  BnoCalibStat bnoCalibStat = 12;
+  int32 servoLeft = 13;
+  int32 servoRight = 14;
+}

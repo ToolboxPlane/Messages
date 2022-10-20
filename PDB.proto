@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ToolboxPlaneMessages;
+
+message PDB {
+  int32 v_vcc = 1;
+  int32 i_vcc = 2;
+  int32 v_5v = 3;
+  int32 i_5v = 4;
+}

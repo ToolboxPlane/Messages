@@ -1,0 +1,9 @@
+set(TOOLBOX_PLANE_MESSAGES
+    FlightComputer.proto
+    FlightController.proto
+    GroundStation.proto
+    LoRa.proto
+    Nav.proto
+    PDB.proto
+    Taranis.proto
+    PARENT_SCOPE)
