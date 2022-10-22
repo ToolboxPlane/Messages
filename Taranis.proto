@@ -15,6 +15,7 @@ message Taranis {
   int32 throttleRaw = 4;
   int32 pitchRaw = 5;
   int32 rollRaw = 6;
-  Switch arm = 7;
-  Switch override = 8;
+  bool isArmed = 7;
+  bool overrideActive = 8;
+  int32 rssi = 9;
 }
