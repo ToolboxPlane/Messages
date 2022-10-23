@@ -17,7 +17,8 @@ set(TOOLBOX_PLANE_MESSAGES
         ${CMAKE_CURRENT_LIST_DIR}/LoRa.proto
         ${CMAKE_CURRENT_LIST_DIR}/Nav.proto
         ${CMAKE_CURRENT_LIST_DIR}/PDB.proto
-        ${CMAKE_CURRENT_LIST_DIR}/Taranis.proto)
+        ${CMAKE_CURRENT_LIST_DIR}/Taranis.proto
+        ${CMAKE_CURRENT_LIST_DIR}/FlightControllerSetpoint.proto)
 
 nanopb_generate_cpp(PROTO_SRCS PROTO_HDRS ${TOOLBOX_PLANE_MESSAGES})
 add_library(${PROJECT_NAME} STATIC ${PROTO_SRCS} ${PROTO_HDRS})

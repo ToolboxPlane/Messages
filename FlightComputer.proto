@@ -6,6 +6,7 @@ import "LoRa.proto";
 import "Taranis.proto";
 import "PDB.proto";
 import "Nav.proto";
+import "FlightControllerSetpoint.proto";
 
 message FlightComputer {
   FlightController flightController = 1;
@@ -13,4 +14,5 @@ message FlightComputer {
   Taranis tarnis = 3;
   PDB pdb = 4;
   Nav nav = 5;
+  FlightControllerSetpoint flightControllerSetpoint = 6;
 }
