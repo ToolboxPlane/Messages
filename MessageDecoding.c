@@ -8,7 +8,7 @@
 
 #include "MessageDefs.hpp"
 
-bool decode_message(decoding_data_t *decoding_data, uint8_t data, pb_istream_t *istream) {
+bool message_decode(message_decoding_data_t *decoding_data, uint8_t data, pb_istream_t *istream) {
     switch (decoding_data->decodingState) {
         case DECODING_INITIAL:
             if (data == END_BYTE) {

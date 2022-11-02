@@ -21,20 +21,20 @@ typedef enum {
     DECODING_FIRST_FOUND,
     DECODING_IN_DATA,
     DECODING_IN_WRONG_DATA
-} decoding_state_t;
+} message_decoding_state_t;
 
 typedef struct DecodingData {
     uint8_t id;
-    decoding_state_t decodingState;
+    message_decoding_state_t decodingState;
     uint8_t len;
     uint8_t buf[DECODING_BUF_SIZE];
-} decoding_data_t;
+} message_decoding_data_t;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-bool decode_message(decoding_data_t *decoding_data, uint8_t data, pb_istream_t *istream);
+bool message_decode(message_decoding_data_t *decoding_data, uint8_t data, pb_istream_t *istream);
 
 #ifdef __cplusplus
 }

@@ -14,7 +14,7 @@
 extern "C" {
 #endif
 
-uint16_t encode_message(uint8_t *buf, uint16_t size, const pb_msgdesc_t *fields, const void *message, uint8_t id);
+uint16_t message_encode(uint8_t *buf, uint16_t size, const pb_msgdesc_t *fields, const void *message, uint8_t id);
 
 #ifdef __cplusplus
 }
