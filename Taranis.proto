@@ -17,5 +17,6 @@ message Taranis {
   int32 rollRaw = 6;
   bool isArmed = 7;
   bool overrideActive = 8;
-  int32 rssi = 9;
+  bool failsave = 9;
+  bool frameLost = 10;
 }
