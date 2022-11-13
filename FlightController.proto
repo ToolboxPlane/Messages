@@ -3,19 +3,17 @@ syntax = "proto3";
 package ToolboxPlaneMessages;
 
 message FlightController {
-  uint32 bnoState = 1;
-  uint32 roll = 2;
-  uint32 pitch = 3;
-  uint32 yaw = 4;
+  bool imu_ok = 1;
+  uint32 roll_mul_16 = 2;
+  uint32 pitch_mul_16 = 3;
+  uint32 yaw_mul_16 = 4;
   uint32 dRoll = 5;
   uint32 dPitch = 6;
   uint32 dYaw = 7;
-  uint32 accX = 8;
-  uint32 accY = 9;
-  uint32 accZ = 10;
-  uint32 bnoError = 11;
-  uint32 bnoCalibStat = 12;
-  uint32 motor = 13;
-  uint32 servoLeft = 14;
-  uint32 servoRight = 15;
+  uint32 accX_mul_100 = 8;
+  uint32 accY_mul_100 = 9;
+  uint32 accZ_mul_100 = 10;
+  uint32 motor = 12;
+  uint32 servoLeft = 13;
+  uint32 servoRight = 14;
 }
