@@ -4,7 +4,24 @@ import "Remote.proto";
 
 package ToolboxPlaneMessages;
 
-message FlightController {
+enum Switch {
+  UP = 0;
+  CENTRE = 1;
+  DOWN = 2;
+}
+message Remote {
+  bool remote_ok = 1;
+  int32 throttleMixed = 2;
+  int32 elevonLeftMixed = 3;
+  int32 elevonRightMixed = 4;
+  int32 throttleRaw = 5;
+  int32 pitchRaw = 6;
+  int32 rollRaw = 7;
+  bool isArmed = 8;
+  bool overrideActive = 9;
+}
+
+message IMU {
   bool imu_ok = 1;
   int32 roll_mul_16 = 2;
   int32 pitch_mul_16 = 3;
@@ -15,8 +32,12 @@ message FlightController {
   int32 accX_mul_100 = 8;
   int32 accY_mul_100 = 9;
   int32 accZ_mul_100 = 10;
-  uint32 motor = 12;
-  uint32 servoLeft = 13;
-  uint32 servoRight = 14;
-  Remote remote = 15;
+}
+
+message FlightController {
+  IMU imu = 1;
+  Remote remote = 2;
+  uint32 motor = 3;
+  uint32 servoLeft = 4;
+  uint32 servoRight = 5;
 }
