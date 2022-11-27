@@ -3,7 +3,7 @@ syntax = "proto3";
 package ToolboxPlaneMessages;
 
 message FlightControllerSetpoint {
-  int32 power = 1;
+  int32 motor = 1;
   int32 pitch = 2;
   int32 roll = 3;
 }

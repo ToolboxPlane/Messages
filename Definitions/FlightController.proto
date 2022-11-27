@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "Remote.proto";
+
 package ToolboxPlaneMessages;
 
 message FlightController {
@@ -16,4 +18,5 @@ message FlightController {
   uint32 motor = 12;
   uint32 servoLeft = 13;
   uint32 servoRight = 14;
+  Remote remote = 15;
 }
