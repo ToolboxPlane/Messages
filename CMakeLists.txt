@@ -22,5 +22,7 @@ set(TOOLBOX_PLANE_MESSAGES
 nanopb_generate_cpp(PROTO_SRCS PROTO_HDRS ${TOOLBOX_PLANE_MESSAGES})
 add_library(ToolboxPlaneMessageDefs STATIC ${PROTO_SRCS} ${PROTO_HDRS})
 target_include_directories(ToolboxPlaneMessageDefs PUBLIC ${CMAKE_CURRENT_BINARY_DIR} ${NANOPB_INCLUDE_DIRS})
+
 add_library(${PROJECT_NAME} STATIC MessageEncoding.c MessageDecoding.c)
 target_link_libraries(${PROJECT_NAME} PUBLIC ToolboxPlaneMessageDefs)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
