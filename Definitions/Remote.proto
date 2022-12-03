@@ -2,6 +2,4 @@ syntax = "proto3";
 
 package ToolboxPlaneMessages;
 
-message Nav{
 
-}
