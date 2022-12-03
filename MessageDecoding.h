@@ -8,7 +8,7 @@
 #define FLIGHTCOMPUTER_MESSAGEDECODING_H
 
 #ifndef DECODING_BUF_SIZE
-    #define DECODING_BUF_SIZE 128
+    #define DECODING_BUF_SIZE 1024
 #endif
 
 #include <pb_decode.h>
@@ -23,7 +23,7 @@ typedef enum {
     DECODING_IN_WRONG_DATA
 } message_decoding_state_t;
 
-typedef struct DecodingData {
+typedef struct {
     uint8_t id;
     message_decoding_state_t decodingState;
     uint8_t len;
