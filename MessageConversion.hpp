@@ -17,24 +17,37 @@ namespace messages {
     struct Conversion {};
 
     template<>
-    struct Conversion<types::FlightControllerPackage> {
-        using ThisType = types::FlightControllerPackage;
+    struct Conversion<types::FlightControllerData> {
+        using ThisType = types::FlightControllerData;
         using ProtobufType = ToolboxPlaneMessages_FlightController;
         static constexpr const pb_msgdesc_s *description = ToolboxPlaneMessages_FlightController_fields;
         static constexpr uint8_t ID = FC_ID;
 
         static auto fromProtobuf(const ProtobufType &obj) -> ThisType {
-            return ThisType{
+            types::ImuData imuData{
                     .imuOk = obj.imu.imu_ok,
                     .roll = obj.imu.roll_mul_16 / 16.0F,
                     .pitch = obj.imu.pitch_mul_16 / 16.0F,
                     .yaw = obj.imu.yaw_mul_16 / 16.0F,
-                    .rollDeriv = obj.imu.dRoll_mul_16 / 16.0F * si::hertz,
-                    .pitchDeriv = obj.imu.dPitch_mul_16 / 16.0F * si::hertz,
-                    .yawDeriv = obj.imu.dYaw_mul_16 / 16.0F * si::hertz,
-                    .accX = obj.imu.accX_mul_100 / 100.0F * si::acceleration,
-                    .accY = obj.imu.accY_mul_100 / 100.0F * si::acceleration,
-                    .accZ = obj.imu.accZ_mul_100 / 100.0F * si::acceleration,
+                    .dRoll = obj.imu.dRoll_mul_16 / 16.0 * si::hertz,
+                    .dPitch = obj.imu.dPitch_mul_16 / 16.0 * si::hertz,
+                    .dYaw = obj.imu.dYaw_mul_16 / 16.0 * si::hertz,
+                    .accX = obj.imu.accX_mul_100 / 100.0 * si::acceleration,
+                    .accY = obj.imu.accY_mul_100 / 100.0 * si::acceleration,
+                    .accZ = obj.imu.accZ_mul_100 / 100.0 * si::acceleration,
+            };
+            types::RemoteData remoteData{.throttleRaw = obj.remote.throttleRaw,
+                                         .pitchRaw = obj.remote.pitchRaw,
+                                         .rollRaw = obj.remote.rollRaw,
+                                         .throttleMixed = obj.remote.throttleMixed,
+                                         .elevonLeftMixed = obj.remote.elevonLeftMixed,
+                                         .elevonRightMixed = obj.remote.elevonRightMixed,
+                                         .isArmed = obj.remote.isArmed,
+                                         .manualOverrideActive = obj.remote.overrideActive};
+
+            return ThisType{
+                    .imu = imuData,
+                    .remote = remoteData,
                     .elevonLeft = (obj.servoLeft - 500) / 500.0f,
                     .elevonRight = (obj.servoRight - 500) / 500.0F,
                     .motor = obj.motor / 1000.0F,
@@ -56,22 +69,6 @@ namespace messages {
                     .voltage5V = static_cast<si::default_type>(obj.v_5v) * 32 / 1000.0f * si::volt,
                     .current5V = static_cast<si::default_type>(obj.i_5v) * 64 / 1000.0f * si::ampere,
             };
-        }
-    };
-
-    template<>
-    struct Conversion<types::TaranisPackage> {
-        using ThisType = types::TaranisPackage;
-        using ProtobufType = ToolboxPlaneMessages_Remote;
-        static constexpr const pb_msgdesc_s *description = ToolboxPlaneMessages_Remote_fields;
-
-        static auto fromProtobuf(const ProtobufType &obj) -> ThisType {
-            return ThisType{.throttle = obj.throttleRaw,
-                            .pitch = obj.pitchRaw,
-                            .roll = obj.rollRaw,
-                            .isArmed = obj.isArmed,
-                            .manualOverrideActive = obj.overrideActive,
-                            .rssi = 0 /*obj.rssi*/};
         }
     };
 

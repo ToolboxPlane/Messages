@@ -9,11 +9,12 @@
 #include <SI/Si.hpp>
 #include <cmath>
 
-#include "../../../constants.hpp"
+#define EARTH_CIRCUMFERENCE 40075017
+#define M_PI_F ((float) (M_PI))
 
 class Gps_t {
   public:
-    Gps_t(double lat, double lon, si::Meter<> altitude = 0.0F * si::meter) : lat(lat), lon(lon), altitude(altitude){};
+    Gps_t(double lat, double lon, si::Meter<> altitude = 0.0 * si::meter) : lat(lat), lon(lon), altitude(altitude){};
     double lat, lon;
     si::Meter<> altitude;
 
