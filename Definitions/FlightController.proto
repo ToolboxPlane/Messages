@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-import "Remote.proto";
-
 package ToolboxPlaneMessages;
 
 enum Switch {
