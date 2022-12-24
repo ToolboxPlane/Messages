@@ -9,6 +9,12 @@
 
 #include "MessageDefs.h"
 
+void message_decoding_init(message_decoding_data_t *decoding_data, uint8_t message_id) {
+    decoding_data->decodingState = DECODING_INITIAL;
+    decoding_data->len = 0;
+    decoding_data->id = message_id;
+}
+
 bool message_decoding_decode(message_decoding_data_t *decoding_data, uint8_t data, const pb_msgdesc_t *fields,
                              void *message) {
     switch (decoding_data->decodingState) {
