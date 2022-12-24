@@ -1,16 +1,18 @@
-//
-// Created by paul on 14.05.18.
-//
+/**
+ * @file Gps_t.hpp
+ * @author paul
+ * @date 14.05.18.
+ * @brief Declaration of the Gps-Type
+ * @ingroup Messages
+ */
 
 #ifndef MESSAGES_TYPES_GPS_T_HPP
 #define MESSAGES_TYPES_GPS_T_HPP
-
 
 #include <SI/Si.hpp>
 #include <cmath>
 
 #define EARTH_CIRCUMFERENCE 40075017
-#define M_PI_F ((float) (M_PI))
 
 class Gps_t {
   public:
@@ -48,7 +50,7 @@ class Gps_t {
         return angle;
     }
 
-    static constexpr si::Meter<> EARTH_RADIUS{static_cast<float>(EARTH_CIRCUMFERENCE) / (2 * M_PI_F)};
+    static constexpr si::Meter<> EARTH_RADIUS{EARTH_CIRCUMFERENCE / (2 * M_PI)};
 };
 
 #endif // MESSAGES_TYPES_GPS_T_HPP

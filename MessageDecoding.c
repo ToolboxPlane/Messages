@@ -2,13 +2,15 @@
  * @file MessageDecoding.c
  * @author paul
  * @date 01.11.22
- * Description here TODO
+ * @brief Implementation of decoding logic for protobuf messages send via a serial interface.
+ * @ingroup Messages
  */
 #include "MessageDecoding.h"
 
-#include "MessageDefs.hpp"
+#include "MessageDefs.h"
 
-bool message_decode(message_decoding_data_t *decoding_data, uint8_t data, pb_istream_t *istream) {
+bool message_decoding_decode(message_decoding_data_t *decoding_data, uint8_t data, const pb_msgdesc_t *fields,
+                             void *message) {
     switch (decoding_data->decodingState) {
         case DECODING_INITIAL:
             if (data == END_BYTE) {
@@ -21,7 +23,8 @@ bool message_decode(message_decoding_data_t *decoding_data, uint8_t data, pb_ist
                 if (decoding_data->len > 0) {
                     decoding_data->len -= 1;
 
-                    *istream = pb_istream_from_buffer(decoding_data->buf, decoding_data->len);
+                    pb_istream_t istream = pb_istream_from_buffer(decoding_data->buf, decoding_data->len);
+                    pb_decode(&istream, fields, message);
 
                     decoding_data->len = 0;
                     return true;

@@ -2,7 +2,8 @@
  * @file MessageConversion.hpp
  * @author paul
  * @date 20.10.22
- * Description here TODO
+ * @brief Conversion functions from protobuf types to SI-enabled structs.
+ * @ingroup Messages
  */
 #ifndef MESSAGES_MESSAGE_CONVERSION_HPP
 #define MESSAGES_MESSAGE_CONVERSION_HPP

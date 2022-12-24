@@ -2,7 +2,8 @@
  * @file Types.hpp
  * @author paul
  * @date 03.12.22
- * Description here TODO
+ * @brief Definition of the SI-enabled structs for the messages.
+ * @ingroup Messages
  */
 #ifndef MESSAGES_TYPES_TYPES_HPP
 #define MESSAGES_TYPES_TYPES_HPP
@@ -42,7 +43,6 @@ namespace messages::types {
         si::Volt<> voltage5V;
         si::Ampere<> current5V;
     };
-
 
     struct NavPackage {
         int rssi;

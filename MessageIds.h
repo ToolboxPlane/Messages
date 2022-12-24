@@ -2,13 +2,25 @@
  * @file MessageIds.h
  * @author paul
  * @date 23.10.22
- * Description here TODO
+ * @brief Declaration of the IDs of the used messages
+ * @ingroup Messages
  */
-#ifndef FLIGHTCOMPUTER_MESSAGEIDS_H
-#define FLIGHTCOMPUTER_MESSAGEIDS_H
+#ifndef MESSAGES_MESSAGEIDS_H
+#define MESSAGES_MESSAGEIDS_H
 
-#define FC_ID 0x10
-#define PDB_ID 0x30
-#define FC_SP_ID 0x40
+/**
+ * Id of the message send from the flightcontroller to the flightcomputer.
+ */
+enum { FC_ID = 0x10 };
 
-#endif // FLIGHTCOMPUTER_MESSAGEIDS_H
+/**
+ * Id of the message send from the PDB to the flightcomputer.
+ */
+enum { PDB_ID = 0x30 };
+
+/**
+ * Id of the message send from the flightcomputer to the flightcontroller (i.e. the setpoint).
+ */
+enum { FC_SP_ID = 0x40 };
+
+#endif // MESSAGES_MESSAGEIDS_H

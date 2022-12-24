@@ -2,12 +2,17 @@
  * @file MessageDecoding.h
  * @author paul
  * @date 01.11.22
- * Description here TODO
+ * @brief Declaration of decoding logic for protobuf messages send via a serial interface.
+ * @ingroup Messages
  */
-#ifndef FLIGHTCOMPUTER_MESSAGEDECODING_H
-#define FLIGHTCOMPUTER_MESSAGEDECODING_H
+#ifndef MESSAGES_MESSAGEDECODING_H
+#define MESSAGES_MESSAGEDECODING_H
 
 #ifndef DECODING_BUF_SIZE
+    /**
+     * The size of the buffer used for reception (should be at least as large as the largest possible size of the
+     * message).
+     */
     #define DECODING_BUF_SIZE 1024
 #endif
 
@@ -15,30 +20,52 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/**
+ * Internal state of the decoder,
+ */
 typedef enum {
-    DECODING_INITIAL,
-    DECODING_END_FOUND,
-    DECODING_FIRST_FOUND,
-    DECODING_IN_DATA,
-    DECODING_IN_WRONG_DATA
+    DECODING_INITIAL,      ///< Initial state, no data received
+    DECODING_END_FOUND,    ///< End byte found, waiting for start byte
+    DECODING_FIRST_FOUND,  ///< Start byte received, waiting for ID
+    DECODING_IN_DATA,      ///< Matching ID byte received, waiting for data or end byte
+    DECODING_IN_WRONG_DATA ///< Other ID byte received, waiting for data or end byte
 } message_decoding_state_t;
 
+/**
+ * All internal data of the decoder.
+ */
 typedef struct {
-    uint8_t id;
-    message_decoding_state_t decodingState;
-    uint8_t len;
-    uint8_t buf[DECODING_BUF_SIZE];
+    uint8_t id;                             ///< The ID of the message to be received.
+    message_decoding_state_t decodingState; ///< The state of the decoder
+    uint8_t len;                            ///< The length of the received data (excluding start and ID)
+    uint8_t buf[DECODING_BUF_SIZE];         ///< The buffer for the data
 } message_decoding_data_t;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-bool message_decode(message_decoding_data_t *decoding_data, uint8_t data, pb_istream_t *istream);
+/**
+ * Initialize the internal state of the decoder.
+ * @param decoding_data the state to intialize
+ */
+void message_decoding_init(message_decoding_data_t *decoding_data);
+
+/**
+ * Decode a message from a datastream.
+ * @param decoding_data the internal state of the decoder
+ * @param data the new byte used for decoding
+ * @param fields the description of the protobuf-message
+ * @param message out-parameter: set to the message if a complete message was received
+ * @return true if a complete message was received, otherwise false
+ * @return
+ */
+bool message_decoding_decode(message_decoding_data_t *decoding_data, uint8_t data, const pb_msgdesc_t *fields,
+                             void *message);
 
 #ifdef __cplusplus
 }
 #endif
 
 
-#endif // FLIGHTCOMPUTER_MESSAGEDECODING_H
+#endif // MESSAGES_MESSAGEDECODING_H
