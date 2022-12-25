@@ -10,8 +10,8 @@
 
 #ifndef DECODING_BUF_SIZE
     /**
-     * The size of the buffer used for reception (should be at least as large as the largest possible size of the
-     * message).
+     * The size of the buffer used for reception, should be at least as large as the largest possible size of the
+     * message.
      */
     #define DECODING_BUF_SIZE 1024
 #endif
@@ -47,7 +47,7 @@ extern "C" {
 
 /**
  * Initialize the internal state of the decoder.
- * @param decoding_data the state to intialize
+ * @param decoding_data the state to initialize
  * @param message_id id of the message to be received
  */
 void message_decoding_init(message_decoding_data_t *decoding_data, uint8_t message_id);
