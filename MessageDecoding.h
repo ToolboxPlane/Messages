@@ -61,7 +61,8 @@ void message_decoding_init(message_decoding_data_t *decoding_data, uint8_t messa
  * @return true if a complete message was received, otherwise false
  * @return
  */
-bool message_decoding_decode(message_decoding_data_t *decoding_data, uint8_t data, const pb_msgdesc_t *fields, void *message);
+bool message_decoding_decode(message_decoding_data_t *decoding_data, uint8_t data, const pb_msgdesc_t *fields,
+                             void *message);
 
 #ifdef __cplusplus
 }
