@@ -37,10 +37,7 @@ namespace messages {
                     .accY = obj.imu.accY_mul_100 / 100.0 * si::acceleration,
                     .accZ = obj.imu.accZ_mul_100 / 100.0 * si::acceleration,
             };
-            types::RemoteData remoteData{.throttleRaw = obj.remote.throttleRaw,
-                                         .pitchRaw = obj.remote.pitchRaw,
-                                         .rollRaw = obj.remote.rollRaw,
-                                         .throttleMixed = obj.remote.throttleMixed,
+            types::RemoteData remoteData{.throttleMixed = obj.remote.throttleMixed,
                                          .elevonLeftMixed = obj.remote.elevonLeftMixed,
                                          .elevonRightMixed = obj.remote.elevonRightMixed,
                                          .isArmed = obj.remote.isArmed,

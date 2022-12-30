@@ -12,11 +12,8 @@ message Remote {
   int32 throttleMixed = 2;
   int32 elevonLeftMixed = 3;
   int32 elevonRightMixed = 4;
-  int32 throttleRaw = 5;
-  int32 pitchRaw = 6;
-  int32 rollRaw = 7;
-  bool isArmed = 8;
-  bool overrideActive = 9;
+  bool isArmed = 5;
+  bool overrideActive = 6;
 }
 
 message IMU {

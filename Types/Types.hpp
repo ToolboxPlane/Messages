@@ -25,7 +25,6 @@ namespace messages::types {
     };
 
     struct RemoteData {
-        si::Scalar<> throttleRaw, pitchRaw, rollRaw;
         si::Scalar<> throttleMixed, elevonLeftMixed, elevonRightMixed;
         bool isArmed, manualOverrideActive;
     };
