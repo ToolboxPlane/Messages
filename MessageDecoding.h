@@ -24,13 +24,11 @@
  * Internal state of the decoder,
  */
 typedef enum {
-    DECODING_INITIAL,                 ///< Initial state, no data received
-    DECODING_INITIAL_END_FOUND,       ///< End found but, no data received
-    DECODING_START_FOUND,             ///< Start byte received, waiting for ID
-    DECODING_IN_DATA,                 ///< Matching ID byte received, waiting for data or end byte
-    DECODING_IN_WRONG_DATA,           ///< Other ID byte received, waiting for data or end byte
-    DECODING_IN_DATA_END_FOUND,       ///< End byte found, currently in correct package
-    DECODING_IN_WRONG_DATA_END_FOUND, ///< End byte found, currently in wrong package
+    DECODING_INITIAL,           ///< Initial state, no data received
+    DECODING_END_FOUND,         ///< End found, not in package
+    DECODING_START_FOUND,       ///< Start byte received, waiting for ID
+    DECODING_IN_DATA,           ///< Matching ID byte received, waiting for data or end byte
+    DECODING_IN_DATA_END_FOUND, ///< End byte found, currently in correct package
 } message_decoding_state_t;
 
 /**
@@ -69,7 +67,8 @@ void message_decoding_init(message_decoding_data_t *decoding_data, uint8_t messa
  *  * Transition the internal state machine with the input "data" in accordance to the following state machine:
  * \dot
  *  digraph {
- *      INITIAL -> INITIAL_END_FOUND [
+ *      rankdir = "LR";
+ *      INITIAL -> END_FOUND [
  *          label = "data=0xF0";
  *      ]
  *
@@ -77,11 +76,11 @@ void message_decoding_init(message_decoding_data_t *decoding_data, uint8_t messa
  *          label = "otherwise";
  *      ]
  *
- *      INITIAL_END_FOUND -> INITIAL [
+ *      END_FOUND -> INITIAL [
  *          label = "otherwise";
  *      ]
  *
- *      INITIAL_END_FOUND -> START_FOUND [
+ *      END_FOUND -> START_FOUND [
  *          label = "data=0x0F";
  *      ]
  *
@@ -105,24 +104,8 @@ void message_decoding_init(message_decoding_data_t *decoding_data, uint8_t messa
  *          label = "data=0xF0/\nFill buffer";
  *      ]
  *
- *      START_FOUND -> IN_WRONG_DATA [
+ *      START_FOUND -> INITIAL [
  *          label = "otherwise";
- *      ]
- *
- *      IN_WRONG_DATA_END_FOUND -> IN_WRONG_DATA [
- *          label = "otherwise";
- *      ]
- *
- *      IN_WRONG_DATA_END_FOUND -> START_FOUND [
- *          label = "data=0x0F";
- *      ]
- *
- *      IN_WRONG_DATA -> IN_WRONG_DATA [
- *          label = "otherwise";
- *      ]
- *
- *      IN_WRONG_DATA -> IN_WRONG_DATA_END_FOUND [
- *          label = "data=0xF0";
  *      ]
  *  }
  * \enddot

@@ -20,10 +20,10 @@ bool message_decoding_decode(message_decoding_data_t *decoding_data, uint8_t dat
     switch (decoding_data->_decodingState) {
         case DECODING_INITIAL:
             if (data == END_BYTE) {
-                decoding_data->_decodingState = DECODING_INITIAL_END_FOUND;
+                decoding_data->_decodingState = DECODING_END_FOUND;
             }
             break;
-        case DECODING_INITIAL_END_FOUND:
+        case DECODING_END_FOUND:
             if (data == START_BYTE) {
                 decoding_data->_decodingState = DECODING_START_FOUND;
             } else {
@@ -35,7 +35,7 @@ bool message_decoding_decode(message_decoding_data_t *decoding_data, uint8_t dat
                 decoding_data->_decodingState = DECODING_IN_DATA;
                 decoding_data->_len = 0;
             } else {
-                decoding_data->_decodingState = DECODING_IN_WRONG_DATA;
+                decoding_data->_decodingState = DECODING_INITIAL;
             }
             break;
         case DECODING_IN_DATA:
@@ -53,18 +53,6 @@ bool message_decoding_decode(message_decoding_data_t *decoding_data, uint8_t dat
                 return true;
             } else {
                 decoding_data->_decodingState = DECODING_IN_DATA;
-            }
-            break;
-        case DECODING_IN_WRONG_DATA:
-            if (data == END_BYTE) {
-                decoding_data->_decodingState = DECODING_IN_WRONG_DATA_END_FOUND;
-            }
-            break;
-        case DECODING_IN_WRONG_DATA_END_FOUND:
-            if (data == START_BYTE) {
-                decoding_data->_decodingState = DECODING_START_FOUND;
-            } else {
-                decoding_data->_decodingState = DECODING_IN_WRONG_DATA;
             }
             break;
     }
