@@ -3,7 +3,7 @@ on: [ push ]
 
 jobs:
   Run-Tests:
-    name: Run Tests
+    name: NanoPB Tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-          repository: https://github.com/nanopb/nanopb.git
+          repository: nanopb/nanopb
       - name: Install dependencies
         run: |
           # Taken from https://apt.llvm.org/
