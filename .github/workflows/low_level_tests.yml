@@ -24,7 +24,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-          repository: nanopb/nanopb
       - name: Install dependencies
         run: |
           # Taken from https://apt.llvm.org/
@@ -35,17 +34,9 @@ jobs:
           sudo apt-get install -y g++-9 g++-10 g++-11 protobuf-compiler valgrind python3-protobuf clang-* scons lcov
       - name: Run tests
         run: |
-          cd tests
+          cd nanopb/tests
           scons
           mkdir build/coverage
           lcov --base-directory . --directory build/ -c -o build/coverage/nanopb.info
           lcov -r build/coverage/nanopb.info '*tests*' -o build/coverage/nanopb.info
           genhtml -o build/coverage build/coverage/nanopb.info
-      - uses: actions/upload-artifact@v3
-        with:
-          name: RunResults
-          path: build/Tests/LowLevel
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.compiler.cc }}
-          path: build/Tests/LowLevel

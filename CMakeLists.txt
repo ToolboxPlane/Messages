@@ -1,14 +1,8 @@
 project(ToolboxPlaneMessages)
 
-include(FetchContent)
+add_subdirectory(SI)
 
-FetchContent_Declare(
-        nanopb
-        GIT_REPOSITORY "https://github.com/nanopb/nanopb.git"
-        GIT_TAG "master"
-)
-FetchContent_Populate(nanopb)
-set(CMAKE_MODULE_PATH ${nanopb_SOURCE_DIR}/extra)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/nanopb/extra)
 find_package(Nanopb REQUIRED)
 
 set(TOOLBOX_PLANE_MESSAGES
@@ -28,5 +22,3 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..
 
 add_library(ToolboxPlaneMessageConversion INTERFACE)
 target_link_libraries(ToolboxPlaneMessageConversion INTERFACE ${PROJECT_NAME} SI)
-
-add_subdirectory(SI)
