@@ -1,6 +1,6 @@
 [submodule "SI"]
-	path = SI
+	path = External/SI
 	url = https://github.com/teamspatzenhirn/SI.git
 [submodule "nanopb"]
-	path = nanopb
+	path = External/nanopb
 	url = https://github.com/nanopb/nanopb.git

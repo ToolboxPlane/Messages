@@ -1,8 +1,8 @@
 project(ToolboxPlaneMessages)
 
-add_subdirectory(SI)
+add_subdirectory(External/SI)
 
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/nanopb/extra)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/External/nanopb/extra)
 find_package(Nanopb REQUIRED)
 
 set(TOOLBOX_PLANE_MESSAGES
