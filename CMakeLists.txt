@@ -1,6 +1,7 @@
 project(ToolboxPlaneMessages)
 
 add_subdirectory(External/SI)
+add_subdirectory(External/MockTools)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/External/nanopb/extra)
 find_package(Nanopb REQUIRED)
@@ -22,3 +23,5 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..
 
 add_library(ToolboxPlaneMessageConversion INTERFACE)
 target_link_libraries(ToolboxPlaneMessageConversion INTERFACE ${PROJECT_NAME} SI)
+
+add_subdirectory(Tests)

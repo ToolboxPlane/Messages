@@ -4,3 +4,6 @@
 [submodule "nanopb"]
 	path = External/nanopb
 	url = https://github.com/nanopb/nanopb.git
+[submodule "External/MockTools"]
+	path = External/MockTools
+	url = https://github.com/ToolboxPlane/MockTools.git
